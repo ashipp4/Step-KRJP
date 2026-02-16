@@ -129,7 +129,14 @@ a{ color:inherit; text-decoration:none; }
 .muted{ color: var(--muted); }
 
 .timeline{ margin-top: 14px; padding: 14px 14px 10px; }
-.timeline-head{ display:flex; justify-content:space-between; align-items:flex-end; gap:12px; }
+.timeline-head{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  gap:6px;
+}
 .chips{ display:flex; gap:8px; flex-wrap:wrap; margin-top: 10px; }
 .chip{
   padding:8px 10px;
@@ -250,3 +257,4 @@ a{ color:inherit; text-decoration:none; }
   color:#ff4d4d;
   font-weight:600;
 }
+
