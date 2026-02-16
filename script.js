@@ -20,8 +20,8 @@ const TEXT = {
     title: "IJ 商品化プロセス（ISO Step）",
     sub: "規定と営業視点を一画面で切替できる学習・参照用ページ",
     heroH1: "全体Processを把握、ステップごとのやることを確認。",
-    heroP:
-     "各ステップで 規定 と 営業視点 を切替し、次ゲートに進むために必要な依頼・受領物を整理できます。<span class='warn'>※最終判断は原本PDF・関係部門の指示に従ってください。</span>",
+   heroP:
+  "各ステップで 規定 と 営業視点 を切替し、次ゲートに進むために必要な依頼・受領物を整理できます。<br><span class='warn'>※最終判断は原本PDF・関係部門の指示に従ってください。</span><br><br>基本的に必要書類は「ステップ移行チェックリスト」のみ作成します。<br>他の書類はこれの補足用です。<br><br>※<a href='https://konicaminoltaglobal.sharepoint.com/sites/kmo-kmidiv/IJDivision/Pages/qiso.aspx' target='_blank'>https://konicaminoltaglobal.sharepoint.com/sites/kmo-kmidiv/IJDivision/Pages/qiso.aspx</a>",
     heroNote: "", // ←「使い方」案内を消したいので空
     tlTitle: "ISO Step タイムライン",
     tlHint: "クリックすると該当ステップへ移動します。",
@@ -910,4 +910,5 @@ document.addEventListener("click", onClick);
 document.addEventListener("input", onInput);
 
 rerenderAll();
+
 
