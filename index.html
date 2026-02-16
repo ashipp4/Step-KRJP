@@ -4,12 +4,16 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>IJ 商品化プロセス（ISO Step）</title>
+
   <link rel="stylesheet" href="styles.css" />
+  <!-- (선택) favicon 404 없애고 싶으면 아래 한 줄 유지 -->
+  <link rel="icon" href="data:,">
 </head>
+
 <body>
   <header class="topbar">
     <div class="brand">
-      <div class="logo">IJ</div>
+      <div class="logo" aria-hidden="true">IJ</div>
       <div>
         <div class="title" id="uiTitle">IJ 商品化プロセス（ISO Step）</div>
         <div class="subtitle" id="uiSub">規定と営業視点を一画面で切替できる学習・参照用ページ</div>
@@ -18,12 +22,18 @@
 
     <div class="top-actions">
       <div class="searchbox">
-        <input id="searchInput" type="search" placeholder="検索 / Search (例: 特採, サンプル, β, DR2)" />
+        <input
+          id="searchInput"
+          type="search"
+          placeholder="検索 / Search (例: 特採, サンプル, β, DR2)"
+          autocomplete="off"
+          spellcheck="false"
+        />
       </div>
 
-      <button class="pill" id="langBtn" aria-label="Switch language">
+      <button class="pill" id="langBtn" type="button" aria-label="Switch language">
         <span id="langLabel">日本語</span>
-        <span class="pill-sep">/</span>
+        <span class="pill-sep" aria-hidden="true">/</span>
         <span id="langAlt">한국어</span>
       </button>
     </div>
@@ -37,14 +47,14 @@
           各ステップで <b>規定</b> と <b>営業視点</b> を切替し、次ゲートに進むために必要な依頼・受領物を整理できます。
           ※最終判断は原本PDF・関係部門の指示に従ってください。
         </p>
-        <div class="hero-badges">
+
+        <div class="hero-badges" aria-label="features">
           <span class="badge">JA/KR</span>
           <span class="badge">規定 / 営業視点</span>
           <span class="badge">検索</span>
         </div>
       </div>
-      <div class="hero-right">
-         </div>
+      <!-- ✅ 使い方案内(右側カード) 제거: hero-right 자체를 삭제 -->
     </section>
 
     <section class="timeline card">
@@ -52,7 +62,7 @@
         <div class="section-title" id="tlTitle">ISO Step タイムライン</div>
         <div class="muted" id="tlHint">クリックすると該当ステップへ移動します。</div>
       </div>
-      <div id="timelineChips" class="chips"></div>
+      <div id="timelineChips" class="chips" aria-label="ISO step timeline"></div>
     </section>
 
     <section class="steps">
@@ -67,7 +77,6 @@
     </footer>
   </main>
 
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
 </body>
 </html>
-
