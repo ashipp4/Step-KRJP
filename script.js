@@ -21,7 +21,7 @@ const TEXT = {
     sub: "規定と営業視点を一画面で切替できる学習・参照用ページ",
     heroH1: "全体Processを把握、ステップごとのやることを確認。",
     heroP:
-      "各ステップで 規定 と 営業視点 を切替し、次ゲートに進むために必要な依頼・受領物を整理できます。※最終判断は原本PDF・関係部門の指示に従ってください。",
+     "各ステップで 規定 と 営業視点 を切替し、次ゲートに進むために必要な依頼・受領物を整理できます。<span class='warn'>※最終判断は原本PDF・関係部門の指示に従ってください。</span>",
     heroNote: "", // ←「使い方」案内を消したいので空
     tlTitle: "ISO Step タイムライン",
     tlHint: "クリックすると該当ステップへ移動します。",
@@ -725,7 +725,7 @@ function applyUIText() {
   setText("#uiTitle", t.title);
   setText("#uiSub", t.sub);
   setText("#heroH1", t.heroH1);
-  setText("#heroP", t.heroP);
+  setHTML("#heroP", t.heroP);
 
   // ✅ #heroNote 요소를 HTML에서 삭제해도 페이지가 안 깨짐
   // ✅ heroNote 문자열이 빈 값이면, 요소가 있더라도 내용은 비워짐
