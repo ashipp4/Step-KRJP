@@ -11,8 +11,9 @@
   --radius: 16px;
   --radius2: 22px;
   --max: 1040px;
-  --font: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial,
-          "Hiragino Sans", "Noto Sans JP", "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --font: "Meiryo UI", "Meiryo", "Yu Gothic UI", "Segoe UI",
+          "Hiragino Sans", "Noto Sans JP", "Noto Sans KR",
+          "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
 }
 
 *{ box-sizing:border-box; }
@@ -202,3 +203,4 @@ a{ color:inherit; text-decoration:none; }
   .grid-2{ grid-template-columns: 1fr; }
   .hero h1{ font-size: 28px; }
 }
+
