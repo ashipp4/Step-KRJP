@@ -1,531 +1,745 @@
-// --- i18n dictionary (JA default, KR toggle) ---
-const I18N = {
-  ja: {
-    site_title: "IJ 商品化プロセス（ISO Step）",
-    site_subtitle: "ステップ別：目的 / 必須対応 / ゲート条件 / 参考",
-    jump_to_timeline: "タイムラインへ",
+// -------------------------------
+// IJ ISO Step Page (JA/KR + Tabs)
+// -------------------------------
 
-    hero_headline: "「やること」を迷わないためのステップ地図",
-    hero_lead: "商品化の各会議体（Gate）で“何を準備・提出・確認するか”を、実務チェックリストとして一列に整理。",
-
-    hero_card1_title: "使い方",
-    hero_card1_body: "自分の案件の「今のステップ」を選び、必須対応と次ゲート条件を確認する。",
-    hero_card2_title: "注意ポイント",
-    hero_card2_body: "α/βは特採が必要、サンプル品は有償＝製品同等の責務が発生。DR2以降の変更は変更プロセス。",
-    hero_card3_title: "更新",
-    hero_card3_body: "社内運用に合わせて文言・担当・書式（チェックリスト項目）を随時更新してOK。",
-
-    note_tag: "出典",
-    note_text: "「商品化プロセス教育（異動者向け）QM11版対応（2025.04）」をベースに要点化。",
-
-    timeline_title: "全体タイムライン（Gate）",
-    timeline_subtitle: "各ステップは「目的 → 必須対応 → ゲート条件 → 営業/実務メモ」の順で記載。",
-
-    quickcheck_title: "クイック注意事項（超重要）",
-    quickcheck_subtitle: "事故りやすいポイントだけ抜粋。",
-
-    qc_1_title: "α / β（無償・免責）",
-    qc_1_li1: "出荷時は「特採申請書」を品証部へ提出（必須）。",
-    qc_1_li2: "評価結果が無い状態で次ゲートに進めない（原則）。",
-
-    qc_2_title: "サンプル品（有償）",
-    qc_2_li1: "有償提供＝製品と同等の責務（保証・法規対応など）が発生。",
-    qc_2_li2: "通常は特採不要（例外：特採品扱い等）。",
-
-    qc_3_title: "DR2以降の変更",
-    qc_3_li1: "設計試作性能確認（DR2）承認後の変更は変更プロセス対象。",
-    qc_3_li2: "変更中の試作品の外部提供は、品証部のリリース承認が必要。",
-
-    qc_4_title: "販売決定",
-    qc_4_li1: "前提は「適正な量産品質」＋販売/CS準備完了。",
-    qc_4_li2: "販売後1年以内にレビューし、次企画へフィードバック。",
-
-    footer_text: "必要なら、このページをそのまま社内Wiki/共有にも転用できます。",
-    back_to_top: "上へ",
-  },
-
-  ko: {
-    site_title: "IJ 상품화 프로세스(ISO Step)",
-    site_subtitle: "단계별: 목적 / 필수 대응 / 게이트 조건 / 참고",
-    jump_to_timeline: "타임라인으로",
-
-    hero_headline: "‘내가 뭘 해야 하는지’ 헷갈리지 않게 만드는 단계 지도",
-    hero_lead: "상품화 각 회의체(Gate)에서 ‘무엇을 준비/제출/확인해야 하는지’를 실무 체크리스트로 한 줄로 정리했습니다.",
-
-    hero_card1_title: "사용법",
-    hero_card1_body: "내案件의 ‘현재 단계’를 고르고, 필수 대응과 다음 게이트 조건을 확인합니다.",
-    hero_card2_title: "주의 포인트",
-    hero_card2_body: "α/β는 특채(特採) 필요, 샘플품은 유상=제품과 동일 책임 발생. DR2 이후 변경은 변경 프로세스 대상.",
-    hero_card3_title: "업데이트",
-    hero_card3_body: "사내 운영에 맞게 문구/담당/체크리스트 항목을 수시로 업데이트해도 됩니다.",
-
-    note_tag: "출처",
-    note_text: "‘상품화 프로세스 교육(이동자용) QM11판 대응(2025.04)’ 내용을 바탕으로 요약했습니다.",
-
-    timeline_title: "전체 타임라인(Gate)",
-    timeline_subtitle: "각 단계는 ‘목적 → 필수 대응 → 게이트 조건 → 실무 메모’ 순으로 정리했습니다.",
-
-    quickcheck_title: "퀵 체크(매우 중요)",
-    quickcheck_subtitle: "사고 나기 쉬운 포인트만 뽑았습니다.",
-
-    qc_1_title: "α / β(무상·면책)",
-    qc_1_li1: "출하 시 ‘특채 신청서’를 품증부에 제출(필수).",
-    qc_1_li2: "평가 결과 없이 다음 게이트로 진행 불가(원칙).",
-
-    qc_2_title: "샘플품(유상)",
-    qc_2_li1: "유상 제공=제품과 동일 책임(보증/법규 대응 등) 발생.",
-    qc_2_li2: "통상 특채 불필요(예외: 특채품 취급 등).",
-
-    qc_3_title: "DR2 이후 변경",
-    qc_3_li1: "설계시작 성능확인(DR2) 승인 후 변경은 변경 프로세스 대상.",
-    qc_3_li2: "변경 중 시제품 외부 제공은 품증부 릴리즈 승인이 필요.",
-
-    qc_4_title: "판매 결정",
-    qc_4_li1: "전제는 ‘적정 양산 품질’ + 판매/CS 준비 완료.",
-    qc_4_li2: "판매 후 1년 이내 리뷰하여 다음 기획에 피드백.",
-
-    footer_text: "원하면 이 페이지를 그대로 사내 위키/공유 문서로 전용해도 됩니다.",
-    back_to_top: "위로",
-  }
+const UI = {
+  lang: "ja", // "ja" | "ko"
+  query: "",
+  tabByStep: new Map(), // stepId -> "rule" | "sales"
 };
 
-// --- Steps data (JA/KR) ---
+const TEXT = {
+  ja: {
+    title: "IJ 商品化プロセス（ISO Step）",
+    sub: "規定と営業視点を一画面で切替できる学習・参照用ページ",
+    heroH1: "全体像を掴んで、ステップごとの「やること」を迷わない。",
+    heroP:
+      "各ステップで 規定 と 営業視点 を切替し、次ゲートに進むために必要な依頼・受領物を整理できます。※最終判断は原本PDF・関係部門の指示に従ってください。",
+    heroNote:
+      "使い方：右上で言語切替 → 各カードで「規定/営業視点」切替 → 検索で絞り込み",
+    tlTitle: "ISO Step タイムライン",
+    tlHint: "クリックすると該当ステップへ移動します。",
+    stepsTitle: "ステップ一覧",
+    footer:
+      "※本ページは学習・参照用。最終判断は原本PDF・関係部門の指示に従ってください。",
+    tabRule: "規定",
+    tabSales: "営業視点",
+    secPurpose: "目的/位置づけ",
+    secMust: "必須対応（規定ベース）",
+    secGate: "ゲート/次へ進む条件（規定）",
+    secSales: "営業アクション",
+    secDev: "開発へ依頼・受領物",
+    secQa: "品質へ依頼・受領物",
+    secNext: "次Gate条件（営業視点）",
+    chipStep: "Step",
+  },
+  ko: {
+    title: "IJ 상품화 프로세스(ISO Step)",
+    sub: "규정과 영업 시점을 한 화면에서 전환하는 학습/참고용 페이지",
+    heroH1: "전체 흐름을 잡고, 단계별 ‘할 일’을 헷갈리지 않게.",
+    heroP:
+      "각 단계에서 ‘규정’과 ‘영업 시점’을 전환하며 다음 게이트로 가기 위해 필요한 요청/수령물을 한눈에 정리합니다. ※최종 판단은 원문 PDF 및 관계 부서 지시에 따르세요.",
+    heroNote:
+      "사용법: 우측 상단 언어 전환 → 각 카드에서 ‘규정/영업 시점’ 전환 → 검색으로 필터",
+    tlTitle: "ISO Step 타임라인",
+    tlHint: "클릭하면 해당 단계로 이동합니다.",
+    stepsTitle: "단계 목록",
+    footer:
+      "※본 페이지는 학습/참고용 정리본입니다. 최종 판단은 원문 PDF 및 관계 부서 지시에 따르세요.",
+    tabRule: "규정",
+    tabSales: "영업 시점",
+    secPurpose: "목적/포지션",
+    secMust: "필수 대응(규정 기반)",
+    secGate: "게이트/다음 단계 조건(규정)",
+    secSales: "영업 액션",
+    secDev: "개발 요청·수령물",
+    secQa: "품질 요청·수령물",
+    secNext: "다음 Gate 조건(영업 시점)",
+    chipStep: "Step",
+  },
+};
+
+// -------------------------------
+// Data (Edit here)
+// -------------------------------
 const STEPS = [
   {
-    key: "proposal",
-    badge: { ja: "企画", ko: "기획" },
-    title: { ja: "新製品提案会議", ko: "신제품 제안회의" },
-    purpose: {
-      ja: "新製品の先行開発着手の提案と各部門への周知。",
-      ko: "신제품 선행개발 착수 제안 및 각 부문 공지."
+    id: "s0",
+    short: { ja: "市場調査", ko: "시장조사" },
+    title: { ja: "市場調査・情報収集", ko: "시장조사·정보수집" },
+    meta: { ja: "情報整理 / ニーズ把握", ko: "정보 정리 / 니즈 파악" },
+    rule: {
+      purpose: {
+        ja: ["顧客ニーズ・市場動向の把握", "競合・適用Applicationの整理"],
+        ko: ["고객 니즈/시장 동향 파악", "경쟁/적용 Application 정리"],
+      },
+      must: {
+        ja: ["想定顧客・用途・数量の仮置き", "基本リスクの洗い出し（粗）"],
+        ko: ["예상 고객/용도/물량 가설 설정", "기본 리스크 1차 도출(러프)"],
+      },
+      gate: {
+        ja: ["次ステップへ進める粒度の市場情報が揃っている"],
+        ko: ["다음 단계로 갈 수 있을 수준의 시장 정보 확보"],
+      },
     },
-    must: {
-      ja: [
-        "開発ロードマップに記載後、原則1Q以内に提案会議または企画会議を実施。",
-        "提案する製品による事業構想（狙い/用途/顧客想定）を提示。",
-        "α品出荷判定会議を予定する場合、事前に提案会議の開催が必須。"
-      ],
-      ko: [
-        "개발 로드맵 반영 후 원칙적으로 1Q 이내 제안회의 또는 기획회의 실시.",
-        "제품 사업구상(목표/용도/고객 가정)을 제시.",
-        "α품 출하 판정회의 예정 시, 제안회의 선행 개최가 필수."
-      ]
+    sales: {
+      salesActions: {
+        ja: ["顧客課題/用途を一文で言える状態にする", "競合採用Head/条件을 조사", "物量/価格感/導入時期(ロードマップ) 확보"],
+        ko: ["고객 과제/용도를 한 문장으로 정리", "경쟁사 채택 Head/조건 조사", "물량/가격감/도입시기(로드맵) 확보"],
+      },
+      devReq: {
+        ja: ["既存製品で対応 가능か 1차 판단", "技術的ボトルネック有無(温度/溶剤/信頼性 등)"],
+        ko: ["기존 제품 대응 가능 여부 1차 판단", "기술 병목(온도/용제/신뢰성 등) 유무 확인"],
+      },
+      qaReq: {
+        ja: ["過去不具合/クレーム傾向の有無 확인(類似用途)"],
+        ko: ["유사 용도 과거 불량/클레임 경향 확인"],
+      },
+      nextGate: {
+        ja: ["“誰が/何に/いつ/いくらで”の骨格が揃う"],
+        ko: ["“누가/무엇을/언제/얼마에” 뼈대가 잡힘"],
+      },
     },
-    gate: {
-      ja: ["製品化の意図が明確（コンセプト案など）", "社内共有・認識合わせができていること"],
-      ko: ["제품화 의도 명확(컨셉안 등)", "사내 공유/인식 정렬 완료"]
-    },
-    memo: {
-      ja: "営業：顧客に提案できる状態（コンセプト案）が目安。",
-      ko: "영업: 고객에 제안 가능한 수준(컨셉안)이 개최 기준."
-    }
   },
+
   {
-    key: "alpha",
-    badge: { ja: "無償", ko: "무상" },
-    title: { ja: "α品出荷判定会議", ko: "α품 출하 판정회의" },
-    purpose: {
-      ja: "仮説検証のためのα品（免責・無償）の出荷可否判断。",
-      ko: "가설 검증용 α품(면책·무상) 출하 가능 여부 판단."
+    id: "s1",
+    short: { ja: "提案", ko: "제안" },
+    title: { ja: "新製品提案会議", ko: "신제품 제안 회의" },
+    meta: { ja: "先行開発 着手判断", ko: "선행개발 착수 판단" },
+    rule: {
+      purpose: {
+        ja: ["事業として検討する価値の判断", "先行開発/検証の着手可否を決定"],
+        ko: ["사업 검토 가치 판단", "선행개발/검증 착수 여부 결정"],
+      },
+      must: {
+        ja: ["売上規模×新規性で区分(例: Aa/Bb/Cc)を整理", "提案資料・議事録を保管"],
+        ko: ["매출규모×신규성으로 구분(예: Aa/Bb/Cc) 정리", "제안자료/회의록 보관"],
+      },
+      gate: {
+        ja: ["事業部長承認", "開発着手方針/概略スケジュール合意"],
+        ko: ["사업부장 승인", "개발 착수 방침/개략 일정 합의"],
+      },
     },
-    must: {
-      ja: [
-        "免責品・製品化未定である前提を明確化。",
-        "出荷時は特採申請書を品証部へ提出。",
-        "提供先と共に評価・検証を行い、結果無しで次ゲートへ進めない。"
-      ],
-      ko: [
-        "면책품·제품화 미정 전제를 명확히 문서화.",
-        "출하 시 특채(特採) 신청서를 품증부에 제출.",
-        "제공처와 함께 평가/검증 수행, 결과 없이 다음 게이트 진행 불가."
-      ]
+    sales: {
+      salesActions: {
+        ja: ["顧客・用途・競合・売上規模を明確化", "社外に出せる情報/出せない情報を線引き", "評価の目的(何を確かめるか)を定義"],
+        ko: ["고객/용도/경쟁/매출규모 명확화", "대외 공유 가능/불가 정보 구분", "평가 목적(무엇을 확인할지) 정의"],
+      },
+      devReq: {
+        ja: ["技術成立性の一次見解", "開発リソース/期間の目安", "主要リスク項目リスト"],
+        ko: ["기술 성립성 1차 의견", "개발 리소스/기간 가늠", "주요 리스크 항목 리스트"],
+      },
+      qaReq: {
+        ja: ["販売リスク(購買品含む)の一次判定", "類似クレーム/規制観点の注意点"],
+        ko: ["판매 리스크(구매품 포함) 1차 판정", "유사 클레임/규제 관점 주의사항"],
+      },
+      nextGate: {
+        ja: ["区分(Aa/Bb/Cc)が確定", "“次に何を検証するか”が合意"],
+        ko: ["구분(Aa/Bb/Cc) 확정", "“다음에 무엇을 검증할지” 합의"],
+      },
     },
-    gate: {
-      ja: ["新製品提案会議でα品出荷予定を報告済み", "評価・検証計画があること"],
-      ko: ["신제품 제안회의에서 α품 출하 예정 보고 완료", "평가/검증 계획 존재"]
-    },
-    memo: {
-      ja: "社内顧客限定で試作費振替などの有償提供は可（運用条件に注意）。",
-      ko: "사내 고객 한정으로 시비용 대체 등 유상 제공 가능(운용 조건 주의)."
-    }
   },
+
   {
-    key: "plan",
-    badge: { ja: "承認", ko: "승인" },
-    title: { ja: "新製品企画会議", ko: "신제품 기획회의" },
-    purpose: {
-      ja: "製品化開発着手（事業化）の可否判断（事業性確認）。",
-      ko: "제품화 개발 착수(사업화) 가능 여부 판단(사업성 확인)."
+    id: "s2",
+    short: { ja: "α出荷", ko: "α출하" },
+    title: { ja: "α品出荷判定会議", ko: "α품 출하 판정 회의" },
+    meta: { ja: "仮説検証 / 無償 / 免責", ko: "가설검증 / 무상 / 면책" },
+    rule: {
+      purpose: {
+        ja: ["仮説検証目的でのα出荷可否 판단", "安全/品質面で重大リスク가ないか 확인"],
+        ko: ["가설 검증 목적 α 출하 가능 여부 판단", "안전/품질 중대 리스크 여부 확인"],
+      },
+      must: {
+        ja: ["αは無償・試験研究用・免責の前提を明示", "出荷条件を記録"],
+        ko: ["α는 무상/시험연구용/면책 전제 명시", "출하 조건 기록"],
+      },
+      gate: {
+        ja: ["事業部長承認", "免責条件の合意（社内・必要なら顧客）"],
+        ko: ["사업부장 승인", "면책 조건 합의(사내/필요 시 고객)"],
+      },
     },
-    must: {
-      ja: [
-        "事業性（市場/顧客/収益性/リスク）を説明できる状態にする。",
-        "承認後、開発は要求仕様の明確化、販売は“開発中品”として提案可能。"
-      ],
-      ko: [
-        "사업성(시장/고객/수익성/리스크)을 설명 가능한 상태로 준비.",
-        "승인 후 개발은 요구사양 명확화, 영업은 ‘개발중 제품’으로 제안 가능."
-      ]
+    sales: {
+      salesActions: {
+        ja: ["顧客へ「α=無償/免責/検証用」を明確化", "使用条件(溶剤/温度/運用)を文書で回収", "評価期間/アウトプット(何を報告してもらうか)合意"],
+        ko: ["고객에 ‘α=무상/면책/검증용’ 명확히 안내", "사용 조건(용제/온도/운용) 문서로 회수", "평가 기간/산출물(무엇을 공유받을지) 합의"],
+      },
+      devReq: {
+        ja: ["最低限の動作/性能確認結果", "禁止条件/注意事項(波形/材料相性 등)"],
+        ko: ["최소 동작/성능 확인 결과", "금지 조건/주의사항(파형/재료 상성 등)"],
+      },
+      qaReq: {
+        ja: ["免責文言/出荷条件の確認", "特採必要性の有無(該当時)"],
+        ko: ["면책 문구/출하 조건 확인", "특채 필요성 유무(해당 시)"],
+      },
+      nextGate: {
+        ja: ["顧客評価の目的/条件/報告が合意済", "社内承認が取れている"],
+        ko: ["고객 평가 목적/조건/보고 합의 완료", "사내 승인 완료"],
+      },
     },
-    gate: {
-      ja: ["事業部長承認で事業化着手", "要求仕様へ落とし込める見通し"],
-      ko: ["사업부장 승인으로 사업화 착수", "요구사양으로 구체화 가능한 수준"]
-    },
-    memo: {
-      ja: "ここから“社外への提案”がやりやすくなる（ただし免責/取扱条件は別途）。",
-      ko: "여기부터 대외 제안이 쉬워짐(단, 면책/취급 조건은 별도)."
-    }
   },
+
   {
-    key: "dr1",
-    badge: { ja: "設計", ko: "설계" },
-    title: { ja: "設計審査（DR1）", ko: "설계 심사(DR1)" },
-    purpose: {
-      ja: "設計図面/設計処方が設計仕様を満足するための要素を漏れなく考慮しているか審査。",
-      ko: "설계도면/처방이 설계사양 충족에 필요한 요소를 누락 없이 반영했는지 심사."
+    id: "s3",
+    short: { ja: "企画", ko: "기획" },
+    title: { ja: "新製品企画会議", ko: "신제품 기획 회의" },
+    meta: { ja: "製品化着手 판단", ko: "제품화 착수 판단" },
+    rule: {
+      purpose: {
+        ja: ["商品企画の妥当性を確認し、製品化を進めるか決定"],
+        ko: ["상품 기획 타당성 확인 후 제품화 진행 여부 결정"],
+      },
+      must: {
+        ja: ["企画内容/スコープ/前提条件を明文化", "関係部門の役割分担を定義"],
+        ko: ["기획 내용/범위/전제 조건 문서화", "관계 부서 역할 분담 정의"],
+      },
+      gate: {
+        ja: ["製品化 착수 승인", "概略日程と主要マイルストーン 합의"],
+        ko: ["제품화 착수 승인", "개략 일정 및 주요 마일스톤 합의"],
+      },
     },
-    must: {
-      ja: [
-        "顧客要求および法規制が設計仕様書に漏れなく反映されていることを再確認。",
-        "企画会議以降にα出荷承認した場合、その評価結果を報告。"
-      ],
-      ko: [
-        "고객 요구 및 법규가 설계사양서에 누락 없이 반영됐는지 재확인.",
-        "기획회의 이후 α 출하 승인된 경우, 그 평가 결과를 보고."
-      ]
+    sales: {
+      salesActions: {
+        ja: ["顧客要件(必須/希望)を整理して固定", "価格帯・導入スケジュールの現実성 점검", "“変更が出たらどこで止めるか”を共有"],
+        ko: ["고객 요구(필수/희망) 정리해 고정", "가격대/도입 일정 현실성 점검", "‘변경 발생 시 어디서 멈출지’ 공유"],
+      },
+      devReq: {
+        ja: ["仕様定義 초안", "リスク/代替案(Plan B)"],
+        ko: ["사양 정의 초안", "리스크/대안(Plan B)"],
+      },
+      qaReq: {
+        ja: ["品質上の懸念ポイント 초기 목록", "評価項目/基準案"],
+        ko: ["품질 우려 포인트 초기 리스트", "평가 항목/기준안"],
+      },
+      nextGate: {
+        ja: ["仕様/スコープが文書화됨", "評価の観点が揃う"],
+        ko: ["사양/스코프 문서화", "평가 관점 정리 완료"],
+      },
     },
-    gate: {
-      ja: ["設計審査に必要な情報が揃っている", "重大な抜け/矛盾がない"],
-      ko: ["설계 심사에 필요한 정보 확보", "중요 누락/모순 없음"]
-    },
-    memo: {
-      ja: "要求事項のトレーサビリティ（どこに反映したか）が大事。",
-      ko: "요구사항 추적성(어디에 반영했는지)이 중요."
-    }
   },
+
   {
-    key: "beta",
-    badge: { ja: "無償", ko: "무상" },
-    title: { ja: "β品出荷判定会議", ko: "β품 출하 판정회의" },
-    purpose: {
-      ja: "顧客要望の明確化のためのβ品（免責・無償）の提供可否判断。",
-      ko: "고객 요구 명확화를 위한 β품(면책·무상) 제공 가능 여부 판단."
+    id: "s4",
+    short: { ja: "β出荷", ko: "β출하" },
+    title: { ja: "β品出荷判定会議", ko: "β품 출하 판정 회의" },
+    meta: { ja: "要求明確化 / 無償", ko: "요구 명확화 / 무상" },
+    rule: {
+      purpose: {
+        ja: ["顧客要求を明確化するためのβ出荷可否を判断"],
+        ko: ["고객 요구 명확화를 위한 β 출하 가능 여부 판단"],
+      },
+      must: {
+        ja: ["βは無償（設計試験品）前提", "評価条件/目的/フィードバック 루트를 정리"],
+        ko: ["β는 무상(설계 시험품) 전제", "평가 조건/목적/피드백 루트 정리"],
+      },
+      gate: {
+        ja: ["事業部長承認", "顧客評価 계획 합의"],
+        ko: ["사업부장 승인", "고객 평가 계획 합의"],
+      },
     },
-    must: {
-      ja: [
-        "企画会議でβ品出荷予定を報告済みであること。",
-        "出荷時は特採申請書を品証部へ提出。",
-        "予定評価項目の結果無しで設計試作性能確認（DR2）へ進めない。"
-      ],
-      ko: [
-        "기획회의에서 β품 출하 예정 보고가 완료되어야 함.",
-        "출하 시 특채 신청서를 품증부에 제출.",
-        "예정 평가항목 결과 없이 DR2로 진행 불가."
-      ]
+    sales: {
+      salesActions: {
+        ja: ["顧客要求を文書で確定(要求仕様)", "評価 계획(기간/샘플 수/보고)을 합의", "무상 조건/면책 범위를 정리(필요시)"],
+        ko: ["고객 요구를 문서로 확정(요구 사양)", "평가 계획(기간/수량/보고) 합의", "무상 조건/면책 범위 정리(필요 시)"],
+      },
+      devReq: {
+        ja: ["β向け性能/仕様の説明資料", "禁止条件/運用注意"],
+        ko: ["β 대상 성능/사양 설명자료", "금지 조건/운용 주의사항"],
+      },
+      qaReq: {
+        ja: ["評価 기준/判定 관점(初期) 공유", "出荷条件 문구 확인"],
+        ko: ["평가 기준/판정 관점(초기) 공유", "출하 조건 문구 확인"],
+      },
+      nextGate: {
+        ja: ["要求仕様・評価計画が合意済", "社内承認 완료"],
+        ko: ["요구사양/평가계획 합의 완료", "사내 승인 완료"],
+      },
     },
-    gate: {
-      ja: ["仕様が固まった試作品として提供できる", "評価項目・回収計画が明確"],
-      ko: ["사양 고정 시제품으로 제공 가능", "평가 항목/결과 회수 계획 명확"]
-    },
-    memo: {
-      ja: "α＝幅広い条件で仮説検証、β＝固めた仕様で適合確認、の使い分け。",
-      ko: "α=폭넓은 조건 가설검증, β=고정 사양 적합확인으로 구분."
-    }
   },
+
   {
-    key: "dr2",
-    badge: { ja: "承認", ko: "승인" },
-    title: { ja: "設計試作性能確認会議（DR2）", ko: "설계시작 성능확인회의(DR2)" },
-    purpose: {
-      ja: "設計試作品が性能・品質目標を達成していること等により設計妥当性を確認し、生産試作へ移行判断。",
-      ko: "설계 시제품이 성능/품질 목표를 달성했는지로 설계 타당성 확인, 생산시작으로 이동 판단."
+    id: "s5",
+    short: { ja: "設計試作", ko: "설계시작" },
+    title: { ja: "設計試作（設計審査/DR）", ko: "설계 시작(설계심사/DR)" },
+    meta: { ja: "設計妥当性 판단", ko: "설계 타당성 판단" },
+    rule: {
+      purpose: {
+        ja: ["設計の妥当性確認（性能/信頼性/製造性）"],
+        ko: ["설계 타당성 확인(성능/신뢰성/제조성)"],
+      },
+      must: {
+        ja: ["設計レビュー/試験結果の記録", "仕様変更はルールに沿って管理"],
+        ko: ["설계 리뷰/시험 결과 기록", "사양 변경은 룰에 따라 관리"],
+      },
+      gate: {
+        ja: ["開発部門長 승인(設計審査)"],
+        ko: ["개발 부문장 승인(설계 심사)"],
+      },
     },
-    must: {
-      ja: [
-        "承認後の変更は変更プロセス対象（自由な処方変更は不可）。",
-        "品証部門長の承認が必要になる（変更管理）。",
-        "承認ポイント：①設計仕様（顧客要望含む）を満たす ②設計完了 ③生産設備準備完了。"
-      ],
-      ko: [
-        "승인 후 변경은 변경 프로세스 대상(개발부서 단독 변경 불가).",
-        "품증부문장 승인 필요(변경관리).",
-        "승인 포인트: ①설계사양(고객요구 포함) 충족 ②설계 완료 ③생산설비 준비 완료."
-      ]
+    sales: {
+      salesActions: {
+        ja: ["顧客 요구 변경을 즉시 공유", "일정 단축 요구 시 리스크를 숫자로 설명", "“変更はいつまで 가능”을 합의"],
+        ko: ["고객 요구 변경 즉시 공유", "일정 단축 요구 시 리스크를 수치로 설명", "‘변경은 언제까지 가능’ 합의"],
+      },
+      devReq: {
+        ja: ["最新版仕様書/要件 대응표", "試験 결과 요약(OK/NG/リスク)", "次 단계 일정 확정"],
+        ko: ["최신 사양서/요건 대응표", "시험 결과 요약(OK/NG/리스크)", "다음 단계 일정 확정"],
+      },
+      qaReq: {
+        ja: ["信頼性/リスク評価の進捗", "特採 관점(해당 시) 체크"],
+        ko: ["신뢰성/리스크 평가 진행", "특채 관점(해당 시) 체크"],
+      },
+      nextGate: {
+        ja: ["仕様が固まり、設計審査承認が取れる"],
+        ko: ["사양이 고정되고 설계 심사 승인이 가능"],
+      },
     },
-    gate: {
-      ja: ["評価結果が設計仕様の全要求を満たす", "変更管理に移行する覚悟"],
-      ko: ["평가 결과가 설계사양 전체 요구를 충족", "변경관리 체계로 전환 준비"]
-    },
-    memo: {
-      ja: "ここが“変更プロセス開始ライン”。後戻りコストが跳ねる。",
-      ko: "여기가 ‘변경 프로세스 시작 라인’. 이후 되돌림 비용 급증."
-    }
   },
+
   {
-    key: "sample",
-    badge: { ja: "有償", ko: "유상" },
-    title: { ja: "サンプル品販売決定会議", ko: "샘플품 판매 결정회의" },
-    purpose: {
-      ja: "販売機会追求等の理由で、設計/生産試作品を販売する可否判断。",
-      ko: "판매 기회 확보 등의 이유로 설계/생산 시제품을 유상 판매할지 판단."
+    id: "s6",
+    short: { ja: "サンプル", ko: "샘플" },
+    title: { ja: "サンプル品販売決定会議", ko: "샘플품 판매 결정 회의" },
+    meta: { ja: "有償/条件 통제", ko: "유상/조건 통제" },
+    rule: {
+      purpose: {
+        ja: ["サンプル品（有償）として販売する可否判断"],
+        ko: ["샘플품(유상) 판매 가능 여부 판단"],
+      },
+      must: {
+        ja: ["販売条件/保証範囲/免責の明確化", "議事録/承認を保管"],
+        ko: ["판매 조건/보증 범위/면책 명확화", "회의록/승인 보관"],
+      },
+      gate: {
+        ja: ["事業部長 승인", "販売条件 확정"],
+        ko: ["사업부장 승인", "판매 조건 확정"],
+      },
     },
-    must: {
-      ja: [
-        "有償提供が可能になる一方、製品と同じ責務（保証・法規対応など）が発生。",
-        "通常は特採処置不要（ただし特採品扱いなど例外あり）。"
-      ],
-      ko: [
-        "유상 제공 가능. 단, 제품과 동일 책임(보증/법규 대응 등) 발생.",
-        "통상 특채 불필요(단, 특채품 취급 등 예외 가능)."
-      ]
+    sales: {
+      salesActions: {
+        ja: ["価格/納期/支払条件を確定", "クレーム時の扱い(交換/解析費 등) 합의", "顧客の用途/条件 변경 시 재승인 필요를 안내"],
+        ko: ["가격/납기/지불 조건 확정", "클레임 시 처리(교환/분석비 등) 합의", "용도/조건 변경 시 재승인 필요 안내"],
+      },
+      devReq: {
+        ja: ["サンプルの性能範囲(できる/できない)", "顧客Q&A用の技術メモ", "評価 보고 포맷(가능하면)"],
+        ko: ["샘플 성능 범위(가능/불가)", "고객 Q&A용 기술 메모", "평가 보고 포맷(가능 시)"],
+      },
+      qaReq: {
+        ja: ["保証/免責 문구 확인", "特採 필요 여부/조건", "出荷判정 기준(간단)"],
+        ko: ["보증/면책 문구 확인", "특채 필요 여부/조건", "출하 판정 기준(간단)"],
+      },
+      nextGate: {
+        ja: ["有償条件が文書化되고 승인 완료", "用途/条件이 고정됨"],
+        ko: ["유상 조건 문서화 + 승인 완료", "용도/조건이 고정됨"],
+      },
     },
-    gate: {
-      ja: ["責務（保証/規制）を理解し、条件を整備できている", "販売部門主導で判断"],
-      ko: ["책임(보증/규제)을 이해하고 조건을 정비", "영업부문 주도로 판단"]
-    },
-    memo: {
-      ja: "“お金をもらう”瞬間から、説明責任のレベルが上がる。",
-      ko: "‘돈을 받는 순간’부터 설명 책임 레벨이 올라감."
-    }
   },
+
   {
-    key: "pilot",
-    badge: { ja: "生産", ko: "생산" },
-    title: { ja: "生産試作性能確認会議", ko: "생산시작 성능확인회의" },
-    purpose: {
-      ja: "生産部門/仕入先が作った製品が性能・品質・コスト等の目標達成を確認し、量産移行可否判断。",
-      ko: "생산부문/공급처 제품이 성능·품질·코스트 목표를 달성했는지 확인하고 양산 이동 판단."
+    id: "s7",
+    short: { ja: "生試", ko: "생시" },
+    title: { ja: "生産試作 / 生試性能確認会議", ko: "생산시작 / 생시 성능확인 회의" },
+    meta: { ja: "量産 가능성 확인", ko: "양산 가능성 확인" },
+    rule: {
+      purpose: {
+        ja: ["生産試作で量産性/品質を確認し、次工程へ進む判断"],
+        ko: ["생산 시제품으로 양산성/품질 확인 후 다음 단계 판단"],
+      },
+      must: {
+        ja: ["試作 결과/課題/対策を記録", "関係部門合意を取り付ける"],
+        ko: ["시작 결과/과제/대책 기록", "관계부서 합의 확보"],
+      },
+      gate: {
+        ja: ["生試性能確認会議で合意"],
+        ko: ["생시 성능확인 회의에서 합의"],
+      },
     },
-    must: {
-      ja: [
-        "宿題事項はすべて終了させる（残課題ゼロ化）。",
-        "量産試作レベル区分（0/1/2）を確認し、必要なら量産試作へ。"
-      ],
-      ko: [
-        "숙제사항(남은 과제) 전부 종료(잔과제 0).",
-        "양산시작 레벨(0/1/2) 확인 후 필요 시 양산시작 단계로 이동."
-      ]
+    sales: {
+      salesActions: {
+        ja: ["顧客 일정(라인 투입)과 내부 일정 정합", "量産 전환 시점의 발주/Forecast 확보", "초기 불량 대응 체계 공유"],
+        ko: ["고객 일정(라인 투입)과 내부 일정 정합", "양산 전환 시점 발주/Forecast 확보", "초기 불량 대응 체계 공유"],
+      },
+      devReq: {
+        ja: ["生試 결과 요약(安定性/ばらつき)", "残課題と対策スケジュール", "量試로 넘어갈 조건"],
+        ko: ["생시 결과 요약(안정성/편차)", "잔여 과제와 대책 일정", "양시로 넘어갈 조건"],
+      },
+      qaReq: {
+        ja: ["品質リスク評価/重点管理ポイント", "出荷判정/検査 항목(요약)"],
+        ko: ["품질 리스크 평가/중점 관리 포인트", "출하 판정/검사 항목(요약)"],
+      },
+      nextGate: {
+        ja: ["量産移行の見通しが立つ", "顧客/社内 일정 합의"],
+        ko: ["양산 이행 전망 확보", "고객/사내 일정 합의"],
+      },
     },
-    gate: {
-      ja: ["量産可能な品質が確保できた", "生産オーナーへ移管"],
-      ko: ["양산 가능한 품질 확보", "생산 오너로 이관"]
-    },
-    memo: {
-      ja: "承認後のプロセスオーナーは生産部門（委託先含む）。",
-      ko: "승인 후 프로세스 오너는 생산부문(위탁 포함)."
-    }
   },
+
   {
-    key: "sell",
-    badge: { ja: "販売", ko: "판매" },
-    title: { ja: "新製品販売決定会議", ko: "신제품 판매결정회의" },
-    purpose: {
-      ja: "販売準備が整っていることを確認し、販売可否判断。",
-      ko: "판매 준비 완료 여부를 확인하고 판매 가능 여부 판단."
+    id: "s8",
+    short: { ja: "販売決定", ko: "판매결정" },
+    title: { ja: "新製品販売決定会議", ko: "신제품 판매 결정 회의" },
+    meta: { ja: "販売 개시 판단", ko: "판매 개시 판단" },
+    rule: {
+      purpose: {
+        ja: ["販売開始の可否判断（条件/供給体制/品質）"],
+        ko: ["판매 개시 가능 여부 판단(조건/공급체계/품질)"],
+      },
+      must: {
+        ja: ["価格/供給/サポート体制の確定", "販売資料整備"],
+        ko: ["가격/공급/서포트 체계 확정", "판매 자료 정비"],
+      },
+      gate: {
+        ja: ["事業部長 승인"],
+        ko: ["사업부장 승인"],
+      },
     },
-    must: {
-      ja: [
-        "前提は“適正な量産品質”。",
-        "販売/CS準備、品質要求を満足したサービス提供準備を確認。"
-      ],
-      ko: [
-        "전제는 ‘적정 양산 품질’.",
-        "판매/CS 준비, 품질 요구를 만족하는 서비스 제공 준비 확인."
-      ]
+    sales: {
+      salesActions: {
+        ja: ["価格表/見積조건 확정", "顧客向け 안내 문서 정리", "初期 품질 문의 창구/에스컬레이션 정의"],
+        ko: ["가격표/견적 조건 확정", "고객 안내 문서 정리", "초기 품질 문의 창구/에스컬레이션 정의"],
+      },
+      devReq: {
+        ja: ["最終仕様書", "FAQ/制約条件まとめ", "評価波形/推奨条件(가능 범위)"],
+        ko: ["최종 사양서", "FAQ/제약 조건 정리", "평가 파형/권장 조건(가능 범위)"],
+      },
+      qaReq: {
+        ja: ["初期流動管理の計画", "重大不良時の対応ルール"],
+        ko: ["초기 유동 관리 계획", "중대 불량 시 대응 룰"],
+      },
+      nextGate: {
+        ja: ["販売開始アナウンス可能な状態", "社内支援体制가 명확"],
+        ko: ["판매 개시 공지 가능한 상태", "사내 지원 체계 명확"],
+      },
     },
-    gate: {
-      ja: ["販売・出荷開始の決定", "レビュー開催予定の宣言（運用）"],
-      ko: ["판매/출하 시작 결정", "리뷰 개최 예정 선언(운용)"]
-    },
-    memo: {
-      ja: "販売開始＝対外責任MAX。資料・説明・対応フローを固める。",
-      ko: "판매 시작=대외 책임 MAX. 자료/설명/대응 플로우 고정."
-    }
   },
+
   {
-    key: "change",
-    badge: { ja: "変更", ko: "변경" },
-    title: { ja: "変更プロセス（DR2以降）", ko: "변경 프로세스(DR2 이후)" },
-    purpose: {
-      ja: "変更を計画的に評価・検証し、悪影響防止と市場品質確保。",
-      ko: "변경을 계획적으로 평가/검증하여 악영향 방지 및 시장 품질 확보."
+    id: "s9",
+    short: { ja: "量試", ko: "양시" },
+    title: { ja: "量産試作 / 量試性能確認会議", ko: "양산시작 / 양시 성능확인 회의" },
+    meta: { ja: "量産移行 판단", ko: "양산 이행 판단" },
+    rule: {
+      purpose: {
+        ja: ["量産試作で量産移行の最終判断"],
+        ko: ["양산 시제품으로 양산 이행 최종 판단"],
+      },
+      must: {
+        ja: ["量産条件/検査/供給 안정성을 확인"],
+        ko: ["양산 조건/검사/공급 안정성 확인"],
+      },
+      gate: {
+        ja: ["量試性能確認会議で合意"],
+        ko: ["양시 성능확인 회의에서 합의"],
+      },
     },
-    must: {
-      ja: [
-        "変更提案会議→試作・評価→本設変（承認：品証部門長）。",
-        "承認前の外部提供は特採申請が必要（承認：品証部門長）。"
-      ],
-      ko: [
-        "변경제안회의→시작/평가→본설변(승인: 품증부문장).",
-        "승인 전 외부 제공은 특채 신청 필요(승인: 품증부문장)."
-      ]
+    sales: {
+      salesActions: {
+        ja: ["量産Forecast/PO 계획 확보", "納期/供給能力に合わせた 고객 커뮤니케이션", "초기 양산 불량 발생 시 대응 루트 사전 공유"],
+        ko: ["양산 Forecast/PO 계획 확보", "납기/공급능력에 맞춘 고객 커뮤니케이션", "초기 양산 불량 대응 루트 사전 공유"],
+      },
+      devReq: {
+        ja: ["量産条件 최종판(推奨 운용)", "공정 안정성 데이터(핵심)"],
+        ko: ["양산 조건 최종본(권장 운용)", "공정 안정성 데이터(핵심)"],
+      },
+      qaReq: {
+        ja: ["検査 기준/출하 판정 최종", "初期流動の監視項目"],
+        ko: ["검사 기준/출하 판정 최종", "초기 유동 모니터링 항목"],
+      },
+      nextGate: {
+        ja: ["量産移行Go/NoGoが確定", "顧客供給計画과 내부 체계 정합"],
+        ko: ["양산 이행 Go/NoGo 확정", "고객 공급 계획과 내부 체계 정합"],
+      },
     },
-    gate: {
-      ja: ["変更内容が共有・制御されている", "リリース承認の取得"],
-      ko: ["변경 내용 공유/통제", "릴리즈 승인 확보"]
-    },
-    memo: {
-      ja: "提案者は進捗確認と制御も行う（投げっぱなし禁止）。",
-      ko: "제안자는 진행 확인/통제까지 수행(던져두기 금지)."
-    }
   },
+
   {
-    key: "review",
-    badge: { ja: "改善", ko: "개선" },
-    title: { ja: "新製品販売レビュー", ko: "신제품 판매 리뷰" },
-    purpose: {
-      ja: "初期品質確認と次期製品へのフィードバック（販売後1年以内）。",
-      ko: "초기 품질 확인 및 차기 제품 피드백(판매 후 1년 이내)."
+    id: "s10",
+    short: { ja: "量産初期", ko: "양산초기" },
+    title: { ja: "量産（初期）/ 新製品販売レビュー", ko: "양산(초기)/ 신제품 판매 리뷰" },
+    meta: { ja: "初期品質の監視", ko: "초기 품질 모니터링" },
+    rule: {
+      purpose: {
+        ja: ["販売開始後の初期品質/市場状況をレビュー"],
+        ko: ["판매 개시 후 초기 품질/시장 상황 리뷰"],
+      },
+      must: {
+        ja: ["市場品質情報を集約し、再発防止を回す"],
+        ko: ["시장 품질 정보를 집약하고 재발방지 수행"],
+      },
+      gate: {
+        ja: ["レビュー（承認ではなく報告/確認の位置づけ）"],
+        ko: ["리뷰(승인이 아니라 보고/확인 성격)"],
+      },
     },
-    must: {
-      ja: [
-        "初期品質（品証）と企画妥当性（企画）をレビューし報告。",
-        "運用上は生産会議/月報/Q集約会での報告でも可。"
-      ],
-      ko: [
-        "초기 품질(품증)과 기획 타당성(기획)을 리뷰하고 보고.",
-        "운용상 생산회의/월보/Q집약회 보고로 대체 가능."
-      ]
+    sales: {
+      salesActions: {
+        ja: ["顧客 불만/이상 징후를 즉시 수집", "事実/推定を 분리해 보고", "비슷한 고객/라인에 사전 주의 환기(필요시)"],
+        ko: ["고객 불만/이상 징후 즉시 수집", "사실/추정을 분리해 보고", "유사 고객/라인에 사전 주의 환기(필요 시)"],
+      },
+      devReq: {
+        ja: ["原因解析 지원", "暫定対策/恒久対策案"],
+        ko: ["원인 분석 지원", "임시/영구 대책안"],
+      },
+      qaReq: {
+        ja: ["クレーム判断/対応方針", "再発防止 문서화"],
+        ko: ["클레임 판단/대응 방침", "재발방지 문서화"],
+      },
+      nextGate: {
+        ja: ["初期流動が落ち着き、定常運用へ"],
+        ko: ["초기 유동이 안정되어 정규 운용으로"],
+      },
     },
-    gate: {
-      ja: ["次企画へ反映（PDCA）", "知見の共有"],
-      ko: ["차기 기획 반영(PDCA)", "지식 공유"]
-    },
-    memo: {
-      ja: "“次を強くする会議”。ここを軽視すると同じ事故が繰り返される。",
-      ko: "‘다음을 강하게 만드는 회의’. 여기 약하면 같은 사고 반복."
-    }
   },
+
   {
-    key: "eol",
-    badge: { ja: "終了", ko: "종료" },
-    title: { ja: "生産終了確認会議", ko: "생산 종료 확인회의" },
-    purpose: {
-      ja: "生産終了手続きに問題が無いことを確認。",
-      ko: "생산 종료 절차에 문제가 없는지 확인."
+    id: "s11",
+    short: { ja: "定常", ko: "정규" },
+    title: { ja: "量産（定常）/ 市場品質管理", ko: "양산(정규)/ 시장품질관리" },
+    meta: { ja: "安定供給/改善", ko: "안정공급/개선" },
+    rule: {
+      purpose: {
+        ja: ["市場品質の監視と継続改善", "変更は変更プロセスに従う"],
+        ko: ["시장 품질 모니터링 및 지속 개선", "변경은 변경 프로세스 준수"],
+      },
+      must: {
+        ja: ["変更管理/品質記録の継続", "重大問題はエスカレーション"],
+        ko: ["변경관리/품질 기록 지속", "중대 문제 시 에스컬레이션"],
+      },
+      gate: {
+        ja: ["定常運用（必要に応じて変更審査/会議）"],
+        ko: ["정규 운용(필요 시 변경 심사/회의)"],
+      },
     },
-    must: {
-      ja: [
-        "転用できない部材/設備/仕掛品の処理がある場合、管理部と協議が必須。"
-      ],
-      ko: [
-        "전용 불가 부재/설비/재공품 처리 필요 시, 관리부와 협의 필수."
-      ]
+    sales: {
+      salesActions: {
+        ja: ["価格/納期/供給の継続管理", "顧客の用途変更兆候を早期検知", "変更要求は正式プロセスへ載せる"],
+        ko: ["가격/납기/공급 지속 관리", "고객 용도 변경 징후 조기 탐지", "변경 요구는 정식 프로세스로 태움"],
+      },
+      devReq: {
+        ja: ["改善 요청의 영향/리스크 평가", "대체안/스케줄"],
+        ko: ["개선 요청 영향/리스크 평가", "대체안/일정"],
+      },
+      qaReq: {
+        ja: ["市場クレーム傾向 분석", "品質指標/監視 항목 공유"],
+        ko: ["시장 클레임 경향 분석", "품질 지표/모니터링 항목 공유"],
+      },
+      nextGate: {
+        ja: ["変更がある場合、変更審査の条件が揃う"],
+        ko: ["변경이 있을 경우 변경심사 조건이 갖춰짐"],
+      },
     },
-    gate: {
-      ja: ["処理方針が確定している", "関係者合意"],
-      ko: ["처리 방침 확정", "관계자 합의"]
+  },
+
+  {
+    id: "s12",
+    short: { ja: "終売", ko: "종료" },
+    title: { ja: "生産終了確認会議", ko: "생산 종료 확인 회의" },
+    meta: { ja: "終売/代替提案", ko: "종료/대체 제안" },
+    rule: {
+      purpose: {
+        ja: ["生産終了の妥当性確認と顧客影響を管理"],
+        ko: ["생산 종료 타당성 확인 및 고객 영향 관리"],
+      },
+      must: {
+        ja: ["在庫/代替/サポート 종료 계획 정리", "顧客通知と記録保管"],
+        ko: ["재고/대체/지원 종료 계획 정리", "고객 통지 및 기록 보관"],
+      },
+      gate: {
+        ja: ["生産終了確認会議で合意"],
+        ko: ["생산 종료 확인 회의에서 합의"],
+      },
     },
-    memo: {
-      ja: "終了は“片付け”ではなく、リスク清算（在庫・契約・保証）まで含む。",
-      ko: "종료는 ‘정리’가 아니라 리스크 정산(재고/계약/보증)까지 포함."
-    }
-  }
+    sales: {
+      salesActions: {
+        ja: ["顧客へ終売通知（時期/最終発注）", "代替品ロードマップ提示", "最後の需給調整(在庫/納期)"],
+        ko: ["고객에 종료 공지(시기/최종 발주)", "대체품 로드맵 제시", "마지막 수급 조정(재고/납기)"],
+      },
+      devReq: {
+        ja: ["代替品の技術差分/移行支援範囲", "サポート 종료 시점"],
+        ko: ["대체품 기술 차분/이행 지원 범위", "지원 종료 시점"],
+      },
+      qaReq: {
+        ja: ["残存リスク/回収要否 판단", "終売後クレーム対応 룰"],
+        ko: ["잔존 리스크/회수 필요 여부 판단", "종료 후 클레임 대응 룰"],
+      },
+      nextGate: {
+        ja: ["顧客影響 최소화 계획이 확정"],
+        ko: ["고객 영향 최소화 계획 확정"],
+      },
+    },
+  },
 ];
 
-function setLang(lang) {
-  document.documentElement.lang = (lang === "ja" ? "ja" : "ko");
+// -------------------------------
+// DOM helpers
+// -------------------------------
+const $ = (sel) => document.querySelector(sel);
+const escapeHtml = (s) =>
+  String(s).replace(/[&<>"']/g, (m) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[m]));
 
-  // swap button labels
-  const label = document.getElementById("langLabel");
-  const alt = document.getElementById("langAlt");
-  if (lang === "ja") {
-    label.textContent = "JA";
-    alt.textContent = "KR";
-  } else {
-    label.textContent = "KR";
-    alt.textContent = "JA";
-  }
+// -------------------------------
+// Render
+// -------------------------------
+function applyUIText() {
+  const t = TEXT[UI.lang];
+  document.documentElement.lang = UI.lang === "ja" ? "ja" : "ko";
 
-  // translate static labels
-  document.querySelectorAll("[data-i18n]").forEach(el => {
-    const key = el.getAttribute("data-i18n");
-    const text = I18N[lang][key];
-    if (typeof text === "string") el.textContent = text;
-  });
+  $("#uiTitle").textContent = t.title;
+  $("#uiSub").textContent = t.sub;
+  $("#heroH1").textContent = t.heroH1;
+  $("#heroP").textContent = t.heroP;
+  $("#heroNote").textContent = t.heroNote;
+  $("#tlTitle").textContent = t.tlTitle;
+  $("#tlHint").textContent = t.tlHint;
+  $("#stepsTitle").textContent = t.stepsTitle;
+  $("#footerText").textContent = t.footer;
 
-  // render steps
-  renderSteps(lang);
-
-  // remember
-  localStorage.setItem("lang", lang);
+  $("#langLabel").textContent = UI.lang === "ja" ? "日本語" : "한국어";
+  $("#langAlt").textContent = UI.lang === "ja" ? "한국어" : "日本語";
 }
 
-function renderSteps(lang) {
-  const root = document.getElementById("steps");
-  root.innerHTML = "";
-
-  const colTitles = lang === "ja"
-    ? { purpose: "目的", must: "必須対応（社内ルール）", gate: "ゲート条件 / 次へ進む条件", memo: "実務メモ" }
-    : { purpose: "목적", must: "필수 대응(사내 규정)", gate: "게이트 조건/다음 단계 조건", memo: "실무 메모" };
+function buildTimeline() {
+  const t = TEXT[UI.lang];
+  const wrap = $("#timelineChips");
+  wrap.innerHTML = "";
 
   STEPS.forEach((s, idx) => {
-    const step = document.createElement("div");
-    step.className = "step";
-    step.id = `step-${idx+1}`;
-
-    const top = document.createElement("div");
-    top.className = "step-top";
-
-    const title = document.createElement("h3");
-    title.className = "step-title";
-    title.textContent = `${idx+1}. ${s.title[lang]}`;
-
-    const badge = document.createElement("div");
-    badge.className = "badge";
-    badge.textContent = s.badge[lang];
-
-    top.appendChild(title);
-    top.appendChild(badge);
-
-    const grid = document.createElement("div");
-    grid.className = "step-grid";
-
-    const b1 = document.createElement("div");
-    b1.className = "block";
-    b1.innerHTML = `<h4>${colTitles.purpose}</h4><p>${s.purpose[lang]}</p>`;
-
-    const b2 = document.createElement("div");
-    b2.className = "block";
-    b2.innerHTML = `<h4>${colTitles.must}</h4>${toUL(s.must[lang])}`;
-
-    const b3 = document.createElement("div");
-    b3.className = "block";
-    b3.innerHTML = `<h4>${colTitles.gate}</h4>${toUL(s.gate[lang])}<h4 style="margin-top:10px">${colTitles.memo}</h4><p>${s.memo[lang]}</p>`;
-
-    grid.appendChild(b1);
-    grid.appendChild(b2);
-    grid.appendChild(b3);
-
-    step.appendChild(top);
-    step.appendChild(grid);
-
-    root.appendChild(step);
+    const chip = document.createElement("button");
+    chip.className = "chip";
+    chip.type = "button";
+    chip.dataset.to = s.id;
+    chip.innerHTML =
+      `${escapeHtml(t.chipStep)} ${idx} · ${escapeHtml(s.short[UI.lang])}` +
+      `<small>${escapeHtml(s.title[UI.lang])}</small>`;
+    wrap.appendChild(chip);
   });
 }
 
-function toUL(items) {
-  const li = items.map(x => `<li>${escapeHtml(x)}</li>`).join("");
-  return `<ul>${li}</ul>`;
+function kvBlock(title, items) {
+  const ul = items?.length
+    ? `<ul>${items.map((x) => `<li>${escapeHtml(x)}</li>`).join("")}</ul>`
+    : `<ul><li class="muted">—</li></ul>`;
+  return `<div class="kv"><h4>${escapeHtml(title)}</h4>${ul}</div>`;
 }
 
-function escapeHtml(str) {
-  return str
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
+function renderStepCard(step, idx) {
+  const t = TEXT[UI.lang];
+  const activeTab = UI.tabByStep.get(step.id) || "rule";
+
+  const ruleHTML =
+    kvBlock(t.secPurpose, step.rule.purpose[UI.lang]) +
+    kvBlock(t.secMust, step.rule.must[UI.lang]) +
+    kvBlock(t.secGate, step.rule.gate[UI.lang]);
+
+  const salesHTML =
+    kvBlock(t.secSales, step.sales.salesActions[UI.lang]) +
+    kvBlock(t.secDev, step.sales.devReq[UI.lang]) +
+    kvBlock(t.secQa, step.sales.qaReq[UI.lang]) +
+    kvBlock(t.secNext, step.sales.nextGate[UI.lang]);
+
+  const contentHTML = activeTab === "rule" ? ruleHTML : salesHTML;
+
+  return `
+    <article class="card step-card" id="${escapeHtml(step.id)}" data-step="${escapeHtml(step.id)}">
+      <div class="step-head">
+        <div>
+          <div class="step-title">${escapeHtml(TEXT[UI.lang].chipStep)} ${idx} · ${escapeHtml(step.title[UI.lang])}</div>
+          <div class="step-meta">${escapeHtml(step.meta[UI.lang])}</div>
+        </div>
+        <div class="step-actions">
+          <span class="pilltag">${escapeHtml(step.short[UI.lang])}</span>
+        </div>
+      </div>
+
+      <div class="tabs" role="tablist" aria-label="view tabs">
+        <button class="tab ${activeTab === "rule" ? "active" : ""}" data-tab="rule" type="button">${escapeHtml(t.tabRule)}</button>
+        <button class="tab ${activeTab === "sales" ? "active" : ""}" data-tab="sales" type="button">${escapeHtml(t.tabSales)}</button>
+      </div>
+
+      <div class="content" data-content>
+        ${contentHTML}
+      </div>
+    </article>
+  `;
 }
 
-// init
-(function init(){
-  const saved = localStorage.getItem("lang");
-  const initial = (saved === "ko" || saved === "ja") ? saved : "ja";
-  setLang(initial);
+function renderSteps() {
+  const wrap = $("#stepsWrap");
+  const q = UI.query.trim().toLowerCase();
 
-  document.getElementById("langBtn").addEventListener("click", () => {
-    const cur = localStorage.getItem("lang") || "ja";
-    setLang(cur === "ja" ? "ko" : "ja");
-  });
-})();
+  const filtered = !q
+    ? STEPS
+    : STEPS.filter((s) => {
+        const blob =
+          [
+            s.short.ja, s.short.ko, s.title.ja, s.title.ko, s.meta.ja, s.meta.ko,
+            ...s.rule.purpose.ja, ...s.rule.purpose.ko,
+            ...s.rule.must.ja, ...s.rule.must.ko,
+            ...s.rule.gate.ja, ...s.rule.gate.ko,
+            ...s.sales.salesActions.ja, ...s.sales.salesActions.ko,
+            ...s.sales.devReq.ja, ...s.sales.devReq.ko,
+            ...s.sales.qaReq.ja, ...s.sales.qaReq.ko,
+            ...s.sales.nextGate.ja, ...s.sales.nextGate.ko,
+          ]
+            .join(" ")
+            .toLowerCase();
+        return blob.includes(q);
+      });
+
+  wrap.innerHTML = filtered.map((s, idx) => renderStepCard(s, idx)).join("");
+}
+
+function rerenderAll() {
+  applyUIText();
+  buildTimeline();
+  renderSteps();
+}
+
+// -------------------------------
+// Events
+// -------------------------------
+function onClick(e) {
+  const chip = e.target.closest(".chip");
+  if (chip?.dataset?.to) {
+    const id = chip.dataset.to;
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    return;
+  }
+
+  const tab = e.target.closest(".tab");
+  if (tab) {
+    const card = tab.closest(".step-card");
+    const stepId = card?.dataset?.step;
+    const to = tab.dataset.tab; // rule | sales
+    if (!stepId || (to !== "rule" && to !== "sales")) return;
+
+    UI.tabByStep.set(stepId, to);
+    // Rerender only this card's content (simple + robust: rerender all)
+    renderSteps();
+    return;
+  }
+
+  const langBtn = e.target.closest("#langBtn");
+  if (langBtn) {
+    UI.lang = UI.lang === "ja" ? "ko" : "ja";
+    rerenderAll();
+    return;
+  }
+}
+
+function onInput(e) {
+  if (e.target?.id === "searchInput") {
+    UI.query = e.target.value || "";
+    renderSteps();
+  }
+}
+
+// -------------------------------
+// Init
+// -------------------------------
+document.addEventListener("click", onClick);
+document.addEventListener("input", onInput);
+
+rerenderAll();
