@@ -135,11 +135,12 @@ a{ color:inherit; text-decoration:none; }
   align-items:flex-end;
   gap:12px;
 }
-.chips{   display:flex;
+.chips{
+  display:flex;
   gap:8px;
   flex-wrap:wrap;
   margin-top: 10px;
-  justify-content:center;   /* ← 이 줄 추가 */
+  justify-content:center;
 }
 .chip{
   padding:8px 10px;
@@ -260,5 +261,6 @@ a{ color:inherit; text-decoration:none; }
   color:#ff4d4d;
   font-weight:600;
 }
+
 
 
