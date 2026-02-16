@@ -697,18 +697,21 @@ function applyUIText() {
   const t = TEXT[UI.lang];
   document.documentElement.lang = UI.lang === "ja" ? "ja" : "ko";
 
-  $("#uiTitle").textContent = t.title;
-  $("#uiSub").textContent = t.sub;
-  $("#heroH1").textContent = t.heroH1;
-  $("#heroP").textContent = t.heroP;
-  $("#heroNote").textContent = t.heroNote;
-  $("#tlTitle").textContent = t.tlTitle;
-  $("#tlHint").textContent = t.tlHint;
-  $("#stepsTitle").textContent = t.stepsTitle;
-  $("#footerText").textContent = t.footer;
+  setText("#uiTitle", t.title);
+  setText("#uiSub", t.sub);
+  setText("#heroH1", t.heroH1);
+  setText("#heroP", t.heroP);
 
-  $("#langLabel").textContent = UI.lang === "ja" ? "日本語" : "한국어";
-  $("#langAlt").textContent = UI.lang === "ja" ? "한국어" : "日本語";
+  // ✅ heroNote는 삭제해도 안 터짐
+  setText("#heroNote", t.heroNote);
+
+  setText("#tlTitle", t.tlTitle);
+  setText("#tlHint", t.tlHint);
+  setText("#stepsTitle", t.stepsTitle);
+  setText("#footerText", t.footer);
+
+  setText("#langLabel", UI.lang === "ja" ? "日本語" : "한국어");
+  setText("#langAlt", UI.lang === "ja" ? "한국어" : "日本語");
 }
 
 function buildTimeline() {
@@ -855,4 +858,5 @@ document.addEventListener("click", onClick);
 document.addEventListener("input", onInput);
 
 rerenderAll();
+
 
