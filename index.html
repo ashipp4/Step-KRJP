@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>IJ 商品化プロセス / ISO Step (JA/KR)</title>
+  <meta name="description" content="IJ 商品化プロセス（QM11対応）ステップ別チェックリスト（日本語/한국어）" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="dot"></div>
+      <div class="brand-text">
+        <div class="brand-title" data-i18n="site_title">IJ 商品化プロセス（ISO Step）</div>
+        <div class="brand-subtitle" data-i18n="site_subtitle">ステップ別：目的 / 必須対応 / ゲート条件 / 参考</div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button id="langBtn" class="btn-secondary" aria-label="Language toggle">
+        <span id="langLabel">JA</span>
+        <span class="sep">/</span>
+        <span id="langAlt">KR</span>
+      </button>
+      <a class="btn-primary" href="#timeline" data-i18n="jump_to_timeline">タイムラインへ</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1 data-i18n="hero_headline">「やること」を迷わないためのステップ地図</h1>
+      <p class="lead" data-i18n="hero_lead">
+        商品化の各会議体（Gate）で“何を準備・提出・確認するか”を、実務チェックリストとして一列に整理。
+      </p>
+
+      <div class="hero-cards">
+        <div class="card">
+          <div class="card-title" data-i18n="hero_card1_title">使い方</div>
+          <div class="card-body" data-i18n="hero_card1_body">
+            自分の案件の「今のステップ」を選び、必須対応と次ゲート条件を確認する。
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title" data-i18n="hero_card2_title">注意ポイント</div>
+          <div class="card-body" data-i18n="hero_card2_body">
+            α/βは特採が必要、サンプル品は有償＝製品同等の責務が発生。DR2以降の変更は変更プロセス。
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title" data-i18n="hero_card3_title">更新</div>
+          <div class="card-body" data-i18n="hero_card3_body">
+            社内運用に合わせて文言・担当・書式（チェックリスト項目）を随時更新してOK。
+          </div>
+        </div>
+      </div>
+
+      <div class="note">
+        <span class="tag" data-i18n="note_tag">出典</span>
+        <span data-i18n="note_text">「商品化プロセス教育（異動者向け）QM11版対応（2025.04）」をベースに要点化。</span>
+      </div>
+    </section>
+
+    <section id="timeline" class="section">
+      <div class="section-head">
+        <h2 data-i18n="timeline_title">全体タイムライン（Gate）</h2>
+        <p class="muted" data-i18n="timeline_subtitle">
+          各ステップは「目的 → 必須対応 → ゲート条件 → 営業/実務メモ」の順で記載。
+        </p>
+      </div>
+
+      <div id="steps" class="steps"></div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2 data-i18n="quickcheck_title">クイック注意事項（超重要）</h2>
+        <p class="muted" data-i18n="quickcheck_subtitle">事故りやすいポイントだけ抜粋。</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="panel">
+          <h3 data-i18n="qc_1_title">α / β（無償・免責）</h3>
+          <ul>
+            <li data-i18n="qc_1_li1">出荷時は「特採申請書」を品証部へ提出（必須）。</li>
+            <li data-i18n="qc_1_li2">評価結果が無い状態で次ゲートに進めない（原則）。</li>
+          </ul>
+        </div>
+
+        <div class="panel">
+          <h3 data-i18n="qc_2_title">サンプル品（有償）</h3>
+          <ul>
+            <li data-i18n="qc_2_li1">有償提供＝製品と同等の責務（保証・法規対応など）が発生。</li>
+            <li data-i18n="qc_2_li2">通常は特採不要（例外：特採品扱い等）。</li>
+          </ul>
+        </div>
+
+        <div class="panel">
+          <h3 data-i18n="qc_3_title">DR2以降の変更</h3>
+          <ul>
+            <li data-i18n="qc_3_li1">設計試作性能確認（DR2）承認後の変更は変更プロセス対象。</li>
+            <li data-i18n="qc_3_li2">変更中の試作品の外部提供は、品証部のリリース承認が必要。</li>
+          </ul>
+        </div>
+
+        <div class="panel">
+          <h3 data-i18n="qc_4_title">販売決定</h3>
+          <ul>
+            <li data-i18n="qc_4_li1">前提は「適正な量産品質」＋販売/CS準備完了。</li>
+            <li data-i18n="qc_4_li2">販売後1年以内にレビューし、次企画へフィードバック。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-left">
+        <span data-i18n="footer_text">必要なら、このページをそのまま社内Wiki/共有にも転用できます。</span>
+      </div>
+      <div class="footer-right">
+        <a href="#top" class="link" data-i18n="back_to_top">上へ</a>
+      </div>
+    </footer>
+  </main>
+
+  <script src="./script.js"></script>
+</body>
+</html>
