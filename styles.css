@@ -246,3 +246,7 @@ a{ color:inherit; text-decoration:none; }
   .searchbox input{ width: min(520px, 52vw); }
 }
 
+.warn{
+  color:#ff4d4d;
+  font-weight:600;
+}
