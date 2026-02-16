@@ -131,13 +131,16 @@ a{ color:inherit; text-decoration:none; }
 .timeline{ margin-top: 14px; padding: 14px 14px 10px; }
 .timeline-head{
   display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  gap:6px;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:12px;
 }
-.chips{ display:flex; gap:8px; flex-wrap:wrap; margin-top: 10px; }
+.chips{   display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top: 10px;
+  justify-content:center;   /* ← 이 줄 추가 */
+}
 .chip{
   padding:8px 10px;
   border-radius: 999px;
@@ -257,4 +260,5 @@ a{ color:inherit; text-decoration:none; }
   color:#ff4d4d;
   font-weight:600;
 }
+
 
