@@ -756,6 +756,8 @@ function buildTimeline() {
 
   wrap.innerHTML = "";
 
+  console.log("STEPS length =", STEPS.length); // ✅ 이 한 줄 추가
+
   STEPS.forEach((s, idx) => {
     const chip = document.createElement("button");
     chip.className = "chip";
@@ -920,6 +922,7 @@ document.addEventListener("click", onClick);
 document.addEventListener("input", onInput);
 
 rerenderAll();
+
 
 
 
