@@ -40,115 +40,42 @@
   </header>
 
   <main class="container">
+<section class="hero card">
+  <div class="hero-left">
+    <h1 id="heroH1">全体像を掴んで、ステップごとの「やること」を迷わない。</h1>
+    <p id="heroP">
+      各ステップで <b>規定</b> と <b>営業視点</b> を切替し、次ゲートに進むために必要な依頼・受領物を整理できます。
+      ※最終判断は原本PDF・関係部門の指示に従ってください。
+    </p>
 
-  <section class="hero card">
-    <div class="hero-left">
-      <h1 id="heroH1">全体像を掴んで、ステップごとの「やること」を迷わない。</h1>
-      <p id="heroP">
-        各ステップで <b>規定</b> と <b>営業視点</b> を切替し、次ゲートに進むために必要な依頼・受領物を整理できます。
-        ※最終判断は原本PDF・関係部門の指示に従ってください。
-      </p>
-
-      <div class="hero-badges" aria-label="features">
-        <span class="badge">JA/KR</span>
-        <span class="badge">規定 / 営業視点</span>
-        <span class="badge">検索</span>
-      </div>
+    <div class="hero-badges" aria-label="features">
+      <span class="badge">JA/KR</span>
+      <span class="badge">規定 / 営業視点</span>
+      <span class="badge">検索</span>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ✅ 사진은 hero 바깥에 둔다 -->
-  <section class="card flowcard">
-    <img class="flowimg" src="flow-chart.jpg" alt="ISO Step Flow Chart">
-  </section>
-    <section class="timeline card">
-      <div class="timeline-head">
-        <div class="section-title" id="tlTitle">ISO Step タイムライン</div>
-        <div class="muted" id="tlHint">クリックすると該当ステップへ移動します。</div>
-      </div>
-      <div id="timelineChips" class="chips" aria-label="ISO step timeline"></div>
-    </section>
-    <!-- ✅ [ADD] 品質マニュアル 4.4.5 商品化ゼネラルフロー -->
-    <section class="qm445" id="qm445">
-      <div class="section-title">品質マニュアル：商品化ゼネラルフロー（4.4.5）</div>
+<!-- ✅ 사진은 hero 바깥에 둔다 -->
+<section class="card flowcard">
+  <img class="flowimg" src="flow-chart.jpg" alt="ISO Step Flow Chart">
+</section>
 
-      <!-- JA: 원본 이미지 -->
-      <div class="qm445-lang lang-ja" data-lang="ja">
-        <div class="qm445-card">
-          <img
-            class="qm445-img"
-            src="assets/qm/page25_flow_ja.jpg"
-            alt="4.4.5 商品化ゼネラルフロー（原本）"
-          />
-        </div>
-      </div>
+<section class="timeline card">
+  <div class="timeline-head">
+    <div class="section-title" id="tlTitle">ISO Step タイムライン</div>
+    <div class="muted" id="tlHint">クリックすると該当ステップへ移動します。</div>
+  </div>
+  <div id="timelineChips" class="chips" aria-label="ISO step timeline"></div>
+</section>
 
-      <!-- KO: 번역 표(단순화 A버전) -->
-      <div class="qm445-lang lang-ko" data-lang="ko">
-        <div class="qm445-card">
-          <div class="qm445-subtitle">4.4.5 상품화 제너럴 플로우 (요약표)</div>
+<section class="steps">
+  <div class="section-title" id="stepsTitle">ステップ一覧</div>
+  <div id="stepsWrap" class="steps-grid"></div>
+</section>
 
-          <div class="qm445-table">
-            <div class="qm445-row qm445-head">
-              <div>스텝명</div><div>회의명</div><div>의장·제안</div><div>승인</div>
-            </div>
-
-            <div class="qm445-row"><div>시장조사·정보수집</div><div>—</div><div>—</div><div>—</div></div>
-            <div class="qm445-row"><div>사업전략 검토</div><div>—</div><div>—</div><div>—</div></div>
-
-            <div class="qm445-row"><div>상품화 검토</div><div>★ 신제품 제안회의</div><div>제안부문 담당자</div><div>사업부장</div></div>
-
-            <div class="qm445-row"><div>상품 기획</div><div>★ α품 출하판정회의</div><div>제안부문 담당자</div><div>사업부장</div></div>
-            <div class="qm445-row"><div>상품 기획</div><div>★ 신제품 기획회의</div><div>상품기획 부문장</div><div>사업부장</div></div>
-
-            <div class="qm445-row"><div>설계 시제품</div><div>★ α품 출하판정회의</div><div>제안부문 담당자</div><div>사업부장</div></div>
-            <div class="qm445-row"><div>설계 시제품</div><div>★ 설계심사</div><div>개발 테마 리더</div><div>개발부문장</div></div>
-            <div class="qm445-row"><div>설계 시제품</div><div>★ β품 출하판정회의</div><div>제안부문 담당자</div><div>사업부장</div></div>
-
-            <div class="qm445-row"><div>생산 시제품</div><div>★ 설시 성능확인회의</div><div>개발 테마 리더</div><div>개발부문장</div></div>
-            <div class="qm445-row"><div>생산 시제품</div><div>★ 샘플품 판매결정회의</div><div>판매부문장</div><div>사업부장</div></div>
-            <div class="qm445-row">
-              <div>생산 시제품</div>
-              <div>★ 생시 성능확인회의</div>
-              <div>개발 테마 리더 <span class="qm445-muted">(구매품인 경우: 판매부문)</span></div>
-              <div>사업부장</div>
-            </div>
-
-            <div class="qm445-row"><div>양산 시제품</div><div>★ 양시 성능확인회의</div><div>생산부문</div><div>사업부장</div></div>
-
-            <div class="qm445-row"><div>양산·판매(초기)</div><div>★ 신제품 판매결정회의</div><div>판매부문장</div><div>사업부장</div></div>
-            <div class="qm445-row"><div>양산·판매(초기)</div><div>★ 신제품 판매리뷰</div><div>품질보증부문장 <span class="qm445-muted">(+상품기획 부문장)</span></div><div>—</div></div>
-
-            <div class="qm445-row"><div>양산·판매(정상)</div><div>품질문제 검토회 / 품질문제 대응회의</div><div>품질보증부문</div><div>—</div></div>
-
-            <div class="qm445-row"><div>생산 종료</div><div>★ 생산종료 확인회의</div><div>판매부문장</div><div>사업부장</div></div>
-          </div>
-
-          <div class="qm445-note">
-            <div class="qm445-note-title">※ 주석 (*1)</div>
-            <div class="qm445-note-body">
-              생산부문장은 ‘생산 시제품 성능확인회의’ 시점의 <b>생산 적합성</b> 및 <b>잔여 과제</b> 상태를 바탕으로
-              양산 시제품 레벨을 결정해 회의에서 보고한다. 단, KM 그룹 외 제조 위탁의 경우 개발부문이 대행 가능.
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- ✅ [ADD END] -->
-    <section class="steps">
-      <div class="section-title" id="stepsTitle">ステップ一覧</div>
-      <div id="stepsWrap" class="steps-grid"></div>
-    </section>
-
-    <footer class="footer muted">
-      <div id="footerText">
-        ※本ページは学習・参照用。最終判断は原本PDF・関係部門の指示に従ってください。
-      </div>
-    </footer>
-  </main>
-
-  <script src="script.js" defer></script>
-</body>
-</html>
-
-
+<footer class="footer muted">
+  <div id="footerText">
+    ※本ページは学習・参照用。最終判断は原本PDF・関係部門の指示に従ってください。
+  </div>
+</footer>
