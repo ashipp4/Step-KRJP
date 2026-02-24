@@ -692,6 +692,15 @@ const STEPS = [
 // -------------------------------
 // DOM helpers
 // -------------------------------
+function applyLangToQM445() {
+  const root = document.querySelector("#qm445");
+  if (!root) return;
+
+  root.querySelectorAll(".qm445-lang").forEach((el) => {
+    el.classList.toggle("active", el.dataset.lang === UI.lang);
+  });
+}
+
 const $ = (sel) => document.querySelector(sel);
 
 const setText = (sel, val) => {
@@ -854,6 +863,7 @@ function rerenderAll() {
   applyUIText();
   buildTimeline();
   renderSteps();
+  applyLangToQM445(); 
 }
 
 // -------------------------------
@@ -910,6 +920,7 @@ document.addEventListener("click", onClick);
 document.addEventListener("input", onInput);
 
 rerenderAll();
+
 
 
 
