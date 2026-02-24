@@ -173,8 +173,8 @@ const STEPS = [
 
   {
     id: "s2",
-    short: { ja: "α", ko: "α" },
-    title: { ja: "α品出荷判定会議", ko: "α품 출하 판정 회의" },
+    short: { ja: "α品", ko: "α품" },
+    title: { ja: "α品出荷判定会議-無償サンプル", ko: "α품 출하 판정 회의-무상샘플" },
     meta: { ja: "無償 / 研究用途 / 免責", ko: "무상 / 연구용도 / 면책" },
     rule: {
       purpose: {
@@ -362,7 +362,7 @@ const STEPS = [
   {
     id: "s6",
     short: { ja: "有償", ko: "유상" },
-    title: { ja: "サンプル品販売決定会議", ko: "샘플품 판매 결정 회의" },
+    title: { ja: "サンプル品販売決定会議-有償サンプル出荷可能", ko: "샘플품 판매 결정 회의-유상샘플 출하가능" },
     meta: { ja: "有償条件 / 保証・免責", ko: "유상 조건 / 보증·면책" },
     rule: {
       purpose: {
@@ -910,5 +910,6 @@ document.addEventListener("click", onClick);
 document.addEventListener("input", onInput);
 
 rerenderAll();
+
 
 
