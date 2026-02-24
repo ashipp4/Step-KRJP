@@ -83,5 +83,209 @@
       </main>
 
   <script src="script.js" defer></script>
+  <!-- =========================
+IJ ISO Step - Flow Chart (HTML/CSS)
+- no table
+- div + grid/flex
+- JA/KR text separated (body[data-lang="ja"|"ko"] 로 토글)
+========================= -->
+
+<section class="iso-flow" id="isoFlow">
+  <div class="iso-flow__header">
+    <h2 class="iso-flow__title">
+      <span class="ja">4.4.5 商品化ゼネラルフロー</span>
+      <span class="ko">4.4.5 상품화 제너럴 플로우</span>
+    </h2>
+    <p class="iso-flow__note">
+      <span class="ja">（品質マニュアル2015年版 第11版）</span>
+      <span class="ko">(품질 매뉴얼 2015년판 제11판)</span>
+    </p>
+  </div>
+
+  <!-- ⭐ 차트 전체: 1) 좌측 스텝 컬럼 + 2) 부서 컬럼 5개 -->
+  <div class="flow-grid" role="img" aria-label="IJ ISO Step Flow Chart">
+    <!-- ====== Dept Header Row ====== -->
+    <div class="cell cell--corner"></div>
+
+    <div class="dept">
+      <span class="ja">商品企画</span><span class="ko">상품기획</span>
+    </div>
+    <div class="dept">
+      <span class="ja">販売</span><span class="ko">영업</span>
+    </div>
+    <div class="dept">
+      <span class="ja">品質保証</span><span class="ko">품질보증</span>
+    </div>
+    <div class="dept">
+      <span class="ja">開発</span><span class="ko">개발</span>
+    </div>
+    <div class="dept">
+      <span class="ja">生産（製造委託先）</span><span class="ko">생산(제조위탁)</span>
+    </div>
+
+    <!-- =========================
+      ROWS: 1..18 (대충 원본 느낌으로 구성)
+      좌측 스텝 라벨 + 중앙 바(박스) + 화살표
+    ========================= -->
+
+    <!-- Row 1 -->
+    <div class="step" style="grid-row: 2;">
+      <span class="ja">市場調査・情報収集</span>
+      <span class="ko">시장조사·정보수집</span>
+    </div>
+    <div class="bar bar--wide arrow-down" style="grid-column: 2 / 6; grid-row: 2;">
+      <span class="ja">市場調査結果・情報収集分析結果集約</span>
+      <span class="ko">시장조사 결과·정보수집/분석 결과 집약</span>
+    </div>
+
+    <!-- Row 2 -->
+    <div class="step" style="grid-row: 3;">
+      <span class="ja">事業戦略検討</span>
+      <span class="ko">사업전략 검토</span>
+    </div>
+    <div class="bar bar--wide arrow-down" style="grid-column: 2 / 6; grid-row: 3;">
+      <span class="ja">事業戦略検討</span>
+      <span class="ko">사업전략 검토</span>
+    </div>
+
+    <!-- Row 3 -->
+    <div class="step" style="grid-row: 4;">
+      <span class="ja">商品化検討</span>
+      <span class="ko">상품화 검토</span>
+    </div>
+    <div class="bar arrow-down" style="grid-column: 2 / 3; grid-row: 4;">
+      <span class="ja">中長期・商品計画</span>
+      <span class="ko">중장기·상품계획</span>
+    </div>
+    <div class="bar bar--wide arrow-down" style="grid-column: 3 / 6; grid-row: 4;">
+      <span class="ja">年度商品化計画、新製品の提案</span>
+      <span class="ko">연도 상품화 계획, 신제품 제안</span>
+    </div>
+
+    <!-- Row 4 -->
+    <div class="step" style="grid-row: 5;">
+      <span class="ja">商品企画</span>
+      <span class="ko">상품기획</span>
+    </div>
+    <div class="bar bar--wide arrow-down" style="grid-column: 2 / 6; grid-row: 5;">
+      <span class="ja">製品構想着手</span>
+      <span class="ko">제품 구상 착수</span>
+    </div>
+
+    <!-- Row 5 -->
+    <div class="step" style="grid-row: 6;">
+      <span class="ja">事業・開発検討</span>
+      <span class="ko">사업·개발 검토</span>
+    </div>
+    <div class="bar bar--wide arrow-down" style="grid-column: 2 / 6; grid-row: 6;">
+      <span class="ja">事業検討・開発検討・競合機調査 等</span>
+      <span class="ko">사업검토·개발검토·경쟁기 조사 등</span>
+    </div>
+
+    <!-- Row 6 -->
+    <div class="step" style="grid-row: 7;">
+      <span class="ja">品質評価</span>
+      <span class="ko">품질평가</span>
+    </div>
+    <div class="bar bar--wide arrow-down" style="grid-column: 2 / 6; grid-row: 7;">
+      <span class="ja">品質評価</span>
+      <span class="ko">품질평가</span>
+    </div>
+
+    <!-- Row 7 (gate + branch 느낌) -->
+    <div class="step" style="grid-row: 8;">
+      <span class="ja">商品化着手可否</span>
+      <span class="ko">상품화 착수 여부</span>
+    </div>
+    <div class="bar bar--wide" style="grid-column: 2 / 7; grid-row: 8;">
+      <span class="ja">製品化着手の可否（商品化区分の決定）</span>
+      <span class="ko">제품화 착수 여부(상품화 구분 결정)</span>
+    </div>
+
+    <!-- Row 8 (개발 쪽 박스) -->
+    <div class="step" style="grid-row: 9;">
+      <span class="ja">設計・開発</span>
+      <span class="ko">설계·개발</span>
+    </div>
+
+    <div class="bar arrow-down" style="grid-column: 4 / 5; grid-row: 9;">
+      <span class="ja">設計・開発</span>
+      <span class="ko">설계·개발</span>
+    </div>
+    <div class="bar arrow-down" style="grid-column: 4 / 5; grid-row: 10;">
+      <span class="ja">設計試作</span>
+      <span class="ko">설계 시제품</span>
+    </div>
+    <div class="bar arrow-down" style="grid-column: 3 / 4; grid-row: 10;">
+      <span class="ja">品質評価（社外）</span>
+      <span class="ko">품질평가(사외)</span>
+    </div>
+    <div class="bar arrow-down" style="grid-column: 3 / 5; grid-row: 11;">
+      <span class="ja">設計試作品評価</span>
+      <span class="ko">설계 시제품 평가</span>
+    </div>
+    <div class="bar arrow-down" style="grid-column: 3 / 5; grid-row: 12;">
+      <span class="ja">設計試作品による設計の妥当性確認</span>
+      <span class="ko">설계 시제품으로 설계 타당성 확인</span>
+    </div>
+
+    <!-- Row 13 (샘플 판매) -->
+    <div class="step" style="grid-row: 13;">
+      <span class="ja">サンプル品販売</span>
+      <span class="ko">샘플품 판매</span>
+    </div>
+    <div class="bar bar--wide arrow-down" style="grid-column: 2 / 6; grid-row: 13;">
+      <span class="ja">サンプル品販売の可否判断</span>
+      <span class="ko">샘플품 판매 가능 여부 판단</span>
+    </div>
+
+    <!-- Row 14 (생산 시작) -->
+    <div class="step" style="grid-row: 14;">
+      <span class="ja">生産試作</span>
+      <span class="ko">생산 시제품</span>
+    </div>
+    <div class="bar arrow-down" style="grid-column: 6 / 7; grid-row: 14;">
+      <span class="ja">生産試作</span>
+      <span class="ko">생산 시제품</span>
+    </div>
+    <div class="bar arrow-down" style="grid-column: 3 / 6; grid-row: 15;">
+      <span class="ja">生産試作品評価</span>
+      <span class="ko">생산 시제품 평가</span>
+    </div>
+    <div class="bar arrow-down" style="grid-column: 3 / 7; grid-row: 16;">
+      <span class="ja">量産開始の可否判断</span>
+      <span class="ko">양산 개시 여부 판단</span>
+    </div>
+
+    <!-- Row 17 (초기 양산) -->
+    <div class="step" style="grid-row: 17;">
+      <span class="ja">量産・販売（初期）</span>
+      <span class="ko">양산·판매(초기)</span>
+    </div>
+    <div class="bar" style="grid-column: 6 / 7; grid-row: 17;">
+      <span class="ja">量産（初期）</span>
+      <span class="ko">양산(초기)</span>
+    </div>
+    <div class="bar" style="grid-column: 3 / 6; grid-row: 17;">
+      <span class="ja">初期品質の確認・商品企画の妥当性確認</span>
+      <span class="ko">초기품질 확인·상품기획 타당성 확인</span>
+    </div>
+
+    <!-- Row 18 (정상 양산) -->
+    <div class="step" style="grid-row: 18;">
+      <span class="ja">量産・販売（定常）</span>
+      <span class="ko">양산·판매(정상)</span>
+    </div>
+    <div class="bar" style="grid-column: 6 / 7; grid-row: 18;">
+      <span class="ja">量産（定常）</span>
+      <span class="ko">양산(정상)</span>
+    </div>
+    <div class="bar bar--wide" style="grid-column: 2 / 6; grid-row: 18;">
+      <span class="ja">市場品質問題の検討・対応（リリースした製品全てに対して実施）</span>
+      <span class="ko">시장품질 문제 검토·대응(출시 제품 전체 대상)</span>
+    </div>
+  </div>
+</section>
 </body>
 </html>
+
