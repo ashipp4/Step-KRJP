@@ -359,3 +359,191 @@ a{ color:inherit; text-decoration:none; }
   border-radius: 14px;
   border: 1px solid rgba(36,40,58,.7);
 }
+/* =========================
+ISO Flow Chart (HTML/CSS)
+- no table
+- div + grid/flex
+- lightweight & maintainable
+- language toggle: body[data-lang="ja"|"ko"]
+========================= */
+
+/* 언어 토글(기존 JS가 body에 data-lang 붙이는 구조면 그대로 동작) */
+.ja { display: inline; }
+.ko { display: none; }
+body[data-lang="ko"] .ja { display: none; }
+body[data-lang="ko"] .ko { display: inline; }
+
+/* Section */
+.iso-flow {
+  margin: 20px 0;
+  padding: 16px;
+  border: 1px solid rgba(0,0,0,.12);
+  border-radius: 14px;
+  background: rgba(255,255,255,.7);
+}
+
+.iso-flow__header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+
+.iso-flow__title {
+  font-size: 16px;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.iso-flow__note {
+  font-size: 12px;
+  opacity: .75;
+  margin: 0;
+}
+
+/* ===== Grid ===== */
+.flow-grid {
+  /* 너무 좁으면 가로 스크롤(레이아웃 유지) */
+  overflow-x: auto;
+  padding-bottom: 6px;
+
+  display: grid;
+  grid-auto-rows: minmax(42px, auto);
+  gap: 8px;
+
+  /* 1: step(좌) + 5: dept */
+  grid-template-columns:
+    170px
+    minmax(160px, 1.15fr)
+    minmax(160px, 1fr)
+    minmax(160px, 1fr)
+    minmax(160px, 1fr)
+    minmax(180px, 1fr);
+
+  /* header + 17 rows */
+  grid-template-rows: 44px repeat(17, minmax(42px, auto));
+}
+
+/* Corner */
+.cell--corner {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+/* Dept headers */
+.dept {
+  grid-row: 1;
+  padding: 10px 10px;
+  border: 1px solid rgba(0,0,0,.18);
+  border-radius: 10px;
+  background: rgba(0,0,0,.03);
+  font-weight: 700;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* Step labels (left column) */
+.step {
+  grid-column: 1;
+  padding: 10px 10px;
+  border: 1px solid rgba(0,0,0,.18);
+  border-radius: 10px;
+  background: rgba(0,0,0,.02);
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Bars / Boxes */
+.bar {
+  position: relative;
+  padding: 10px 12px;
+  border: 1px solid rgba(0,0,0,.22);
+  border-radius: 10px;
+  background: #fff;
+  font-size: 12px;
+  line-height: 1.25;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 42px;
+}
+
+/* 조금 더 길고 중요해 보이는 바 */
+.bar--wide {
+  font-weight: 600;
+}
+
+/* ====== Arrows ======
+기본: 아래로 내려가는 화살표 (pseudo)
+(원본처럼 완전한 연결선까지는 아니고 “흐름도 느낌”을 살리는 최소 구현)
+*/
+.arrow-down::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -16px;
+  width: 2px;
+  height: 16px;
+  background: rgba(0,0,0,.45);
+  transform: translateX(-50%);
+}
+
+.arrow-down::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -18px;
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 8px solid rgba(0,0,0,.55);
+  transform: translateX(-50%);
+}
+
+/* 마지막 줄에서 화살표 끊기 */
+.flow-grid > .arrow-down:last-child::after,
+.flow-grid > .arrow-down:last-child::before {
+  display: none;
+}
+
+/* ===== Responsive =====
+너무 좁으면: 가로 스크롤 유지 + 글자 크기 약간 다운
+*/
+@media (max-width: 900px) {
+  .flow-grid {
+    gap: 6px;
+    grid-template-columns:
+      150px
+      minmax(150px, 1.2fr)
+      minmax(150px, 1fr)
+      minmax(150px, 1fr)
+      minmax(150px, 1fr)
+      minmax(170px, 1fr);
+  }
+  .dept, .step, .bar { font-size: 11px; }
+}
+
+/* 다크모드(기존 프로젝트 테마와 섞여도 무난하게) */
+body.dark .iso-flow {
+  background: rgba(20,20,20,.55);
+  border-color: rgba(255,255,255,.12);
+}
+body.dark .dept,
+body.dark .step {
+  background: rgba(255,255,255,.06);
+  border-color: rgba(255,255,255,.12);
+}
+body.dark .bar {
+  background: rgba(30,30,30,.75);
+  border-color: rgba(255,255,255,.14);
+}
