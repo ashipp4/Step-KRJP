@@ -701,6 +701,19 @@ function applyLangToQM445() {
   });
 }
 
+function applyLangToISOFlow() {
+  const root = document.querySelector("#isoFlow");
+  if (!root) return;
+
+  root.querySelectorAll(".ja, .ko").forEach((el) => {
+    if (el.classList.contains("ja"))
+      el.style.display = UI.lang === "ja" ? "inline" : "none";
+
+    if (el.classList.contains("ko"))
+      el.style.display = UI.lang === "ko" ? "inline" : "none";
+  });
+}
+
 const $ = (sel) => document.querySelector(sel);
 
 const setText = (sel, val) => {
@@ -731,6 +744,10 @@ function applyUIText() {
   const t = TEXT[UI.lang];
   document.documentElement.lang = UI.lang === "ja" ? "ja" : "ko";
 
+  // ✅ Flow chart(isoFlow)도 언어 토글되게 body에 lang 상태 기록
+  document.body.dataset.lang = UI.lang; // "ja" | "ko"
+  applyLangToISOFlow();
+  
   setText("#uiTitle", t.title);
   setText("#uiSub", t.sub);
   setText("#heroH1", t.heroH1);
@@ -866,6 +883,7 @@ function rerenderAll() {
   buildTimeline();
   renderSteps();
   applyLangToQM445(); 
+  applyLangToISOFlow(); 
 }
 
 // -------------------------------
@@ -922,6 +940,7 @@ document.addEventListener("click", onClick);
 document.addEventListener("input", onInput);
 
 rerenderAll();
+
 
 
 
